@@ -17,7 +17,7 @@ const (
 	GPG21xPlus GPGVersion = 3
 )
 
-var gpgVersionRegex = regexp.MustCompile(`\(GnuPG\/.*\) (\d)\.(\d)`)
+var gpgVersionRegex = regexp.MustCompile(`\(GnuPG\/MacGPG2\) (\d)\.(\d)`)
 
 // GPGFinder implement search for gpg executables and returns version of discovered executables
 type GPGFinder interface {
