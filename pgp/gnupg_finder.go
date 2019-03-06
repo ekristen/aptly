@@ -2,6 +2,7 @@ package pgp
 
 import (
 	"errors"
+        "fmt"
 	"os/exec"
 	"regexp"
 	"strings"
@@ -137,6 +138,7 @@ func cliVersionCheck(cmd string, marker string) (result bool, version GPGVersion
 
 	version = GPG21xPlus
 	matches := gpgVersionRegex.FindStringSubmatch(strOutput)
+	fmt.Sprintf("%s", matches)
 	if matches != nil {
 		if matches[1] == "1" {
 			version = GPG1x
