@@ -89,7 +89,7 @@ func (g *GpgSigner) gpgArgs() []string {
 // NewGpgSigner creates a new gpg signer
 func NewGpgSigner(finder GPGFinder) *GpgSigner {
 	gpg, version, err := finder.FindGPG()
-	fmt.Sprintf("%s -> %s", gpg, version)
+	fmt.Printf("%s -> %s", gpg, version)
 	if err != nil {
 		panic(err)
 	}
