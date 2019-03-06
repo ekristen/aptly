@@ -131,12 +131,12 @@ func (it *iteratingGPGFinder) FindGPGV() (gpg string, version GPGVersion, err er
 func cliVersionCheck(cmd string, marker string) (result bool, version GPGVersion) {
 	output, err := exec.Command(cmd, "--version").CombinedOutput()
 	if err != nil {
-		return
+		return err
 	}
 
 	strOutput := string(output)
 	result = strings.Contains(strOutput, marker)
-
+	fmt.Printf("%s ---->", result)
 	version = GPG21xPlus
 	matches := gpgVersionRegex.FindStringSubmatch(strOutput)
 	fmt.Printf("%s %s", matches[1], matches[2])
@@ -148,5 +148,5 @@ func cliVersionCheck(cmd string, marker string) (result bool, version GPGVersion
 		}
 	}
 
-	return
+	return result, version
 }
