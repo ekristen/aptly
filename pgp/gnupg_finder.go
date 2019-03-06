@@ -18,7 +18,7 @@ const (
 	GPG21xPlus GPGVersion = 3
 )
 
-var gpgVersionRegex = regexp.MustCompile(`\(GnuPG\/MacGPG2\) (\d)\.(\d)`)
+var gpgVersionRegex = regexp.MustCompile(`\(GnuPG.*\) (\d)\.(\d)`)
 
 // GPGFinder implement search for gpg executables and returns version of discovered executables
 type GPGFinder interface {
@@ -138,7 +138,7 @@ func cliVersionCheck(cmd string, marker string) (result bool, version GPGVersion
 
 	version = GPG21xPlus
 	matches := gpgVersionRegex.FindStringSubmatch(strOutput)
-	fmt.Sprintf("%s", matches)
+	fmt.Sprintf("%s %s", matches[1], matches[2])
 	if matches != nil {
 		if matches[1] == "1" {
 			version = GPG1x
