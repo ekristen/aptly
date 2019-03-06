@@ -71,7 +71,7 @@ func (pgf *pathGPGFinder) FindGPG() (gpg string, version GPGVersion, err error) 
 	for _, cmd := range pgf.gpgNames {
 		var result bool
 		result, version = cliVersionCheck(cmd, pgf.expectedVersionSubstring)
-		fmt.Sprintf("%s -> %s", result, version)
+		fmt.Printf("%s -> %s", result, version)
 		if result {
 			gpg = cmd
 			break
@@ -139,7 +139,7 @@ func cliVersionCheck(cmd string, marker string) (result bool, version GPGVersion
 
 	version = GPG21xPlus
 	matches := gpgVersionRegex.FindStringSubmatch(strOutput)
-	fmt.Sprintf("%s %s", matches[1], matches[2])
+	fmt.Printf("%s %s", matches[1], matches[2])
 	if matches != nil {
 		if matches[1] == "1" {
 			version = GPG1x
